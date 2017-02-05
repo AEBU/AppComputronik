@@ -23,4 +23,19 @@
     <array name="array_dot_inactive">
         <item>@color/dot_dark_screens</item>
     </array>
+
+
+
+
+
+
+
+    <color name="white">#FFFF</color>
+    <color name="red">#d34836</color>
+    <color name="green">#6EB633</color>
+    <color name="blue">#283593</color>
+
+
+
+    <color name="window_background">#FFF5F5F5</color>
 </resources>

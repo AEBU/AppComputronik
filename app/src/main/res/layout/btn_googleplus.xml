@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/red"
+    android:clickable="true">
+
+    <!-- Contenedor para el logo de la red social -->
+    <RelativeLayout
+        android:layout_width="50dp"
+        android:layout_height="match_parent">
+
+        <!-- Logo -->
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/gp_icon"/>
+
+        <!-- Separador -->
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#204798"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
+
+    <!-- Texto -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fontFamily="sans-serif"
+        android:textStyle="bold"
+        android:gravity="center|center_vertical"
+        android:text="@string/login.message.signin.googleplus"
+        android:textColor="#FFFFFF"/>
+
+</LinearLayout>

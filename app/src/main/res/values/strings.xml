@@ -45,4 +45,22 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+
+    <string name="home_item">INICIO</string>
+    <string name="pago_item">PAY-PAL</string>
+    <string name="confirma_item">CONFIRMACION</string>
+    <string name="contacta_item">CONTACTANOS</string>
+
+
+
+    <string name="configuracion_item">CONFIGURACION</string>
+
+
+
+
+
+
+    <string name="login.message.signin.facebook">INGRESAR CON FACEBOOK</string>
+    <string name="login.message.signin.googleplus">INGRESAR CON GOOGLE PLUS</string>
+
 </resources>
