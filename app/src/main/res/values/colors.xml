@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimary">#adff2f</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!-- Screens background color-->
+    <color name="bg_screens">#FFFAFA</color>
+
+
+    <!-- dots inactive colors -->
+    <color name="dot_dark_screens">#5B8396</color>
+
+
+    <!-- dots active colors -->
+
+    <color name="dot_light_screens">#9FF781</color>
+
+    <array name="array_dot_active">
+        <item>@color/dot_light_screens</item>
+    </array>
+
+    <array name="array_dot_inactive">
+        <item>@color/dot_dark_screens</item>
+    </array>
 </resources>
