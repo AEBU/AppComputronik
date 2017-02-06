@@ -22,6 +22,7 @@ public interface UserService {
     @GET("user/{user_id}")
     Call<User> getUser(@Path("user_id") String user);
 
+
     @GET("user/{username}/{email}")
     Call<User> getUserByEmailAndUserName(@Path("username") String username, @Path("email") String email);
 
