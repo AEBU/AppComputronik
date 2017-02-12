@@ -1,109 +1,135 @@
 package uce.optativa.androidchat.appcomputronik;
 
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class NavigationActivity extends AppCompatActivity {
 
-    /**
-     * Instancia del drawer
-     */
-    private DrawerLayout drawerLayout;
+public class NavigationActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
-    /**
-     * Titulo inicial del drawer
-     */
-    private String drawerTitle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
-        setToolbar();
-
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        if (navigationView != null) {
-            setupDrawerContent(navigationView);
-        }
-
-        drawerTitle = getResources().getString(R.string.home_item);
-        if (savedInstanceState == null) {
-            selectItem(drawerTitle);
-        }
-    }
-    private void setToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        final ActionBar ab = getSupportActionBar();
-        if (ab != null) {
-            // Poner ícono del drawer toggle
-            ab.setHomeAsUpIndicator(R.drawable.ic_home);
-            ab.setDisplayHomeAsUpEnabled(true);
+
+
+
+        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });*/
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
         }
-
     }
 
-    private void setupDrawerContent(NavigationView navigationView) {
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        // Marcar item presionado
-                        menuItem.setChecked(true);
-                        // Crear nuevo fragmento
-                        String title = menuItem.getTitle().toString();
-                        selectItem(title);
-                        return true;
-                    }
-                }
-        );
-    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (!drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            getMenuInflater().inflate(R.menu.main, menu);
-            return true;
-        }
-        return super.onCreateOptionsMenu(menu);
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.navigation, menu);
+        return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                drawerLayout.openDrawer(GravityCompat.START);
-                return true;
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
-    private void selectItem(String title) {
-        // Enviar título como arguemento del fragmento
-        Bundle args = new Bundle();
-        args.putString(HomeFragment.ARG_SECTION_TITLE, title);
 
-        Fragment fragment = HomeFragment.newInstance(title);
-        fragment.setArguments(args);
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        //FragmentManager fm = getFragmentManager();
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager
-                .beginTransaction()
-                .replace(R.id.nav_content, fragment)
-                .commit();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        Fragment fragment=null;
 
-        drawerLayout.closeDrawers(); // Cerrar drawer
+        //nuevo
+        ChatFragment chatFragment;
+        HomeFragment homeFragment;
+        int id = item.getItemId();
 
-        setTitle(title); // Setear título actual
+        if (id == R.id.nav_camera) {
+            //homeFragment=new HomeFragment();
+            //fm.beginTransaction().replace(R.id.nav_content,homeFragment).commit();
+            /*FragmentTransaction transaction= getSupportFragmentManager().beginTransaction();
+            homeFragment= new HomeFragment();
+            transaction.replace(R.id.nav_content,homeFragment);
+            transaction.commit();
+            */
+            fragment=new HomeFragment();
 
+        } else if (id == R.id.nav_gallery) {
+            /*
+            FragmentTransaction transaction2= getSupportFragmentManager().beginTransaction();
+            chatFragment= new ChatFragment();
+            transaction2.replace(R.id.nav_content,chatFragment);
+            transaction2.commit();
+            */
+            fragment=new ChatFragment();
+
+        } else if (id == R.id.nav_slideshow) {
+
+        } else if (id == R.id.nav_manage) {
+
+        } else if (id == R.id.nav_share) {
+
+        } else if (id == R.id.nav_send) {
+
+        }
+
+        fragmentTransaction.replace(R.id.nav_content, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
-    }
 
 
+}

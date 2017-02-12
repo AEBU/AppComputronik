@@ -2,13 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cardview_light_background"
-    tools:context="uce.optativa.androidchat.fragmentsborrar.HomeFragment">
+    tools:context="uce.optativa.androidchat.fragmentsborrar.ChatFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <android.support.v7.widget.RecyclerView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/recyclerOrdenes"
+        android:id="@+id/recyclerChat"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="3dp"

@@ -42,8 +42,15 @@
             android:layout_height="wrap_content"
             android:id="@+id/btnSignin"
             />
+        <Button
+            android:text="@string/login.message.signup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_Signup"
+            />
 
     </LinearLayout>
+
 
     <ProgressBar
         style="?android:attr/progressBarStyleLarge"

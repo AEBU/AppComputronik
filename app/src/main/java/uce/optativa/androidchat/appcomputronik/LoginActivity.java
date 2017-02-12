@@ -14,22 +14,22 @@ import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import uce.optativa.androidchat.appcomputronik.model.User;
 import uce.optativa.androidchat.appcomputronik.network.ApiClient;
 import uce.optativa.androidchat.appcomputronik.service.UserService;
-
-import static uce.optativa.androidchat.appcomputronik.constants.Constants.url;
 
 public class LoginActivity extends AppCompatActivity {
 
     @BindView(R.id.btnSignin)
     Button btnSignin1;
+
     @BindView(R.id.editTxtEmail)
     EditText editTxtEmail;
     @BindView(R.id.editTxtPassword)
     EditText editTxtPassword;
+    @BindView(R.id.btn_Signup)
+    Button btnSignup;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,17 +39,17 @@ public class LoginActivity extends AppCompatActivity {
 
     @OnClick(R.id.btnSignin)
     public void handleSignIn() {
-        UserService userService= ApiClient.getRetrofit().create(UserService.class);
+        UserService userService = ApiClient.getRetrofit().create(UserService.class);
 
         Call<User> requestUser = userService.getUserByEmailAndUserName(editTxtEmail.getText().toString(), editTxtPassword.getText().toString());
         requestUser.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                if (response.isSuccessful()){
-                    User user= response.body();
-                    Log.d("Orden ", "getOrdenList: "+user.toString());
+                if (response.isSuccessful()) {
+                    User user = response.body();
+                    Log.d("Orden ", "getOrdenList: " + user.toString());
                     startActivity(new Intent(LoginActivity.this, NavigationActivity.class));
-                }else   {
+                } else {
                     Toast.makeText(LoginActivity.this, "Usuario No Existente", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -63,4 +63,8 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    @OnClick(R.id.btn_Signup)
+    public void handleSignUp() {
+        startActivity(new Intent(this, SignupActivity.class));
+    }
 }
