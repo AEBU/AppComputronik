@@ -1,52 +1,56 @@
 package uce.optativa.androidchat.appcomputronik.model;
 
 
+import static android.R.attr.id;
+
 /**
  * Created by Alexis on 09/01/2017.
  */
 public class User {
 
-    private long id;
+    private long usrId;
 
-    private String username;
+    private String usrEmail;
 
-    private String email;
+    private String usrPassword;
 
-    public User() {
+
+    public User(String usrEmail, String usrPassword) {
+        this.usrEmail = usrEmail;
+        this.usrPassword = usrPassword;
     }
 
-    public User(String username, String email) {
-        this.username = username;
-        this.email = email;
+    public User(long usrId, String usrEmail, String usrPassword) {
+        this.usrId = usrId;
+        this.usrEmail = usrEmail;
+        this.usrPassword = usrPassword;
     }
 
-    public User(long id, String username, String email) {
-        this.id = id;
-        this.username = username;
-        this.email = email;
+    public long getUsrId() {
+        return usrId;
     }
 
-    public long getId() {
-        return id;
+    public void setUsrId(long usrId) {
+        this.usrId = usrId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public String getUsrEmail() {
+        return usrEmail;
     }
 
-    public String getUsername() {
-        return username;
+    public void setUsrEmail(String usrEmail) {
+        this.usrEmail = usrEmail;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public String getUsrPassword() {
+        return usrPassword;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsrPassword(String usrPassword) {
+        this.usrPassword = usrPassword;
     }
 }
+
+
+
+

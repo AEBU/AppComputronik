@@ -117,8 +117,6 @@ public class NavigationActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_send) {
-
         }
 
         fragmentTransaction.replace(R.id.nav_content, fragment);

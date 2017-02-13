@@ -5,5 +5,6 @@ package uce.optativa.androidchat.appcomputronik.constants;
  */
 
 public class Constants {
-    public static final String  url = "http://10.42.0.97:8080/app/";
+    public static final String  url = "http://10.115.1.81:8080/app/";
+
 }
