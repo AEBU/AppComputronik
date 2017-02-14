@@ -1,7 +1,12 @@
 package uce.optativa.androidchat.appcomputronik;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -14,12 +19,15 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-import uce.optativa.androidchat.appcomputronik.chat.ui.ChatActivity;
 import uce.optativa.androidchat.appcomputronik.contactlist.ContactListPresenter;
 import uce.optativa.androidchat.appcomputronik.contactlist.ui.ContactListActivity;
+
+import static uce.optativa.androidchat.appcomputronik.constants.Constants.contact_num;
 
 
 public class NavigationActivity extends AppCompatActivity
@@ -27,14 +35,37 @@ public class NavigationActivity extends AppCompatActivity
 
     private ContactListPresenter presenter;
     private FirebaseAuth mAuth;
+    private FloatingActionButton call_number;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        call_number = (FloatingActionButton) findViewById(R.id.call_number);
         mAuth = FirebaseAuth.getInstance();
 
+
+        call_number.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_CALL);
+                intent.setData(Uri.parse("tel:" + contact_num));
+
+                if (ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                }
+                startActivity(intent);
+            }
+        });
 
 
 
