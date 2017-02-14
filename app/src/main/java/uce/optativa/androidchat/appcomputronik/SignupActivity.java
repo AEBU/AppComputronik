@@ -14,7 +14,7 @@ import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import uce.optativa.androidchat.appcomputronik.model.User;
+import uce.optativa.androidchat.appcomputronik.model.Users;
 import uce.optativa.androidchat.appcomputronik.network.ApiClient;
 import uce.optativa.androidchat.appcomputronik.service.UserService;
 
@@ -40,13 +40,13 @@ public class SignupActivity extends AppCompatActivity {
     @OnClick(R.id.btn_signup)
     public void handleSignUp(){
         String username=inputEmail.getText().toString();
-        String email=inputPassword.getText().toString();
+        String password=inputPassword.getText().toString();
 
         UserService userService =ApiClient.getRetrofit().create(UserService.class);
-        Call<User> requestUser = userService.setUser(new User(email,username));
-        requestUser.enqueue(new Callback<User>() {
+        Call<Users> requestUser = userService.setUser(new Users(username,password));
+        requestUser.enqueue(new Callback<Users>() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
+            public void onResponse(Call<Users> call, Response<Users> response) {
                 Log.d("d",response.toString());
                 if (response.isSuccessful()){
                     Log.d("d","3 No funciona");
@@ -55,7 +55,7 @@ public class SignupActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
+            public void onFailure(Call<Users> call, Throwable t) {
                 //Toast.makeText(SignupActivity.this,t.getMessage(), Toast.LENGTH_LONG).show();
                 Log.d("d",t.getMessage());
                 Toast.makeText(SignupActivity.this, "Usuario Registrado", Toast.LENGTH_SHORT).show();

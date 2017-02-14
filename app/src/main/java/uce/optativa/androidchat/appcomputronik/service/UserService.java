@@ -8,7 +8,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
-import uce.optativa.androidchat.appcomputronik.model.User;
+import uce.optativa.androidchat.appcomputronik.model.Users;
 
 /**
  * Created by Alexis on 15/01/2017.
@@ -17,24 +17,24 @@ import uce.optativa.androidchat.appcomputronik.model.User;
 public interface UserService {
 
     @GET("/user/")
-    Call<List<User>> getUsers();
+    Call<List<Users>> getUsers();
 
     //@GET("user/{user_id}")
     //void getUser(@Path("user_id") String user);
     @GET("user/{user_id}")
-    Call<User> getUser(@Path("user_id") String user);
+    Call<Users> getUser(@Path("user_id") String user);
 
 
     @GET("user/{username}/{email}")
-    Call<User> getUserByEmailAndUserName(@Path("username") String username, @Path("email") String email);
+    Call<Users> getUserByEmailAndUserName(@Path("username") String username, @Path("email") String email);
 
     @GET("user/1")
-    void getUser(Callback<List<User>> callback);
+    void getUser(Callback<List<Users>> callback);
 
 
     //Post en Retrofit
 
     @POST("userpost/")
-    Call<User> setUser(@Body User user);
+    Call<Users> setUser(@Body Users user);
 
 }

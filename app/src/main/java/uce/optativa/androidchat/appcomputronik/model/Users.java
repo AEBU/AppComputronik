@@ -6,7 +6,7 @@ import static android.R.attr.id;
 /**
  * Created by Alexis on 09/01/2017.
  */
-public class User {
+public class Users {
 
     private long usrId;
 
@@ -15,12 +15,12 @@ public class User {
     private String usrPassword;
 
 
-    public User(String usrEmail, String usrPassword) {
+    public Users(String usrEmail, String usrPassword) {
         this.usrEmail = usrEmail;
         this.usrPassword = usrPassword;
     }
 
-    public User(long usrId, String usrEmail, String usrPassword) {
+    public Users(long usrId, String usrEmail, String usrPassword) {
         this.usrId = usrId;
         this.usrEmail = usrEmail;
         this.usrPassword = usrPassword;

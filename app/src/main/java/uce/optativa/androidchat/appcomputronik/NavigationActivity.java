@@ -1,5 +1,6 @@
 package uce.optativa.androidchat.appcomputronik;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,20 +11,30 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.google.firebase.auth.FirebaseAuth;
+
+import uce.optativa.androidchat.appcomputronik.chat.ui.ChatActivity;
+import uce.optativa.androidchat.appcomputronik.contactlist.ContactListPresenter;
+import uce.optativa.androidchat.appcomputronik.contactlist.ui.ContactListActivity;
 
 
 public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-
+    private ContactListPresenter presenter;
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        mAuth = FirebaseAuth.getInstance();
+
 
 
 
@@ -88,8 +99,7 @@ public class NavigationActivity extends AppCompatActivity
         Fragment fragment=null;
 
         //nuevo
-        ChatFragment chatFragment;
-        HomeFragment homeFragment;
+
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
@@ -101,6 +111,10 @@ public class NavigationActivity extends AppCompatActivity
             transaction.commit();
             */
             fragment=new HomeFragment();
+            fragmentTransaction.replace(R.id.nav_content, fragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+
 
         } else if (id == R.id.nav_gallery) {
             /*
@@ -110,18 +124,37 @@ public class NavigationActivity extends AppCompatActivity
             transaction2.commit();
             */
             fragment=new ChatFragment();
+            fragmentTransaction.replace(R.id.nav_content, fragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+
 
         } else if (id == R.id.nav_slideshow) {
+            startActivity(new Intent(this, ContactListActivity.class));
+
 
         } else if (id == R.id.nav_manage) {
+            fragment=new ContactViewFragment();
+            fragmentTransaction.replace(R.id.nav_content, fragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
 
         } else if (id == R.id.nav_share) {
+            //presenter.signOff();
+            mAuth.getInstance().signOut();
+
+            Log.d("Error", mAuth.toString());
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    | Intent.FLAG_ACTIVITY_NEW_TASK
+                    | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
 
         }
 
-        fragmentTransaction.replace(R.id.nav_content, fragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+      //  fragmentTransaction.replace(R.id.nav_content, fragment);
+        //fragmentTransaction.addToBackStack(null);
+        //fragmentTransaction.commit();
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

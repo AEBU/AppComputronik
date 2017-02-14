@@ -75,4 +75,18 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+
+    <string name="login.error.message.signin">Imposible iniciar sesión %s</string>
+    <string name="login.error.message.signup">Imposible registrar nuevo usuario %s</string>
+    <string name="login.notice.message.signup">Usuario agregado exitosamente</string>
+    <string name="login.notice.message.useradded">Usuario registrado exitosamente</string>
+
+
+    <string name="addcontact.message.title">Agregar contacto</string>
+    <string name="addcontact.message.add">Aceptar</string>
+    <string name="addcontact.message.cancel">Cancelar</string>
+    <string name="addcontact.message.contactadded">Contacto agregado exitosamente</string>
+    <string name="addcontact.error.message">Imposible agregar usuario no existente</string>
+
+
 </resources>
