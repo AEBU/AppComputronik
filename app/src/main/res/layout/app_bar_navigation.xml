@@ -189,13 +189,14 @@
 
     <android.support.design.widget.FloatingActionButton
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         app:layout_anchor="@id/appbar"
         app:layout_anchorGravity="bottom|right|end"
-        android:src="@drawable/ic_launcher"
+        android:src="@mipmap/llamada"
         android:id="@+id/call_number"
         android:layout_margin="@dimen/fab_margin"
         android:clickable="true"/>
+
 
     <FrameLayout
         android:layout_width="match_parent"

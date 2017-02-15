@@ -1,15 +1,18 @@
 package uce.optativa.androidchat.appcomputronik.chat.ui;
 
 import android.app.Application;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -26,8 +29,12 @@ import uce.optativa.androidchat.appcomputronik.chat.entities.ChatMessage;
 import uce.optativa.androidchat.appcomputronik.domain.AvatarHelper;
 import uce.optativa.androidchat.appcomputronik.lib.ImageLoader;
 
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
+
 public class ChatActivity extends AppCompatActivity
-        implements ChatView {
+        implements ChatView{
+
+        //SwipeRefreshLayout.OnRefreshListener
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -47,13 +54,15 @@ public class ChatActivity extends AppCompatActivity
 
     private ChatAdapter adapter;
     private ChatPresenter chatPresenter;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
         ButterKnife.bind(this);
-
+        //swipeRefreshLayout=(SwipeRefreshLayout)findViewById(R.id.load_rest);
+        //swipeRefreshLayout.setOnRefreshListener(this);
         chatPresenter = new ChatPresenterImpl(this);
         chatPresenter.onCreate();
 
@@ -121,4 +130,11 @@ public class ChatActivity extends AppCompatActivity
         adapter.add(msg);
         recyclerView.scrollToPosition(adapter.getItemCount() - 1);
     }
+
+    /*@Override
+    public void onRefresh() {
+        Toast.makeText(getApplicationContext(),
+                "Toast por defecto", Toast.LENGTH_SHORT);
+    }
+    */
 }
